@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Novaria Studio</title>
-  <meta name="description" content="Novaria Studio conçoit des agents IA sur mesure pour automatiser les tâches répétitives, améliorer la réactivité et fluidifier les opérations des entreprises." />
+  <title>Novaria Studio — Agents IA pour entreprises opérationnelles</title>
+  <meta name="description" content="Novaria Studio conçoit des agents IA pour les entreprises de transport, de services et les structures à forte charge opérationnelle." />
   <style>
     :root {
       --bg: #0a0a0f;
       --panel: rgba(255,255,255,0.04);
-      --panel-strong: rgba(255,255,255,0.06);
       --line: rgba(255,255,255,0.1);
       --text: #ffffff;
       --muted: rgba(255,255,255,0.68);
       --soft: rgba(255,255,255,0.45);
       --accent: #9b8cff;
-      --accent-2: #68c7ff;
-      --success: #c7bfff;
       --radius: 28px;
       --shadow: 0 30px 80px rgba(0,0,0,0.35);
       --max: 1200px;
@@ -37,7 +34,6 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
     .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
     .section { padding: 88px 0; }
     .eyebrow {
@@ -100,6 +96,8 @@
       font-weight: 600;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
       border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
     }
     .btn:hover { transform: translateY(-1px); }
     .btn-primary { background: #fff; color: #0a0a0f; }
@@ -127,20 +125,32 @@
     .dot { width: 8px; height: 8px; border-radius: 50%; background: #54e37b; box-shadow: 0 0 20px #54e37b; }
     .small-note { margin-top: 14px; font-size: 14px; color: var(--soft); }
 
-    .hero-card {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      border-radius: 34px;
-      padding: 20px;
-      box-shadow: var(--shadow);
-    }
-    .grid { display: grid; gap: 16px; }
-    .stat-card, .card, .service, .usecase, .faq-item, .process, .result {
+    .hero-card,
+    .card,
+    .service,
+    .usecase,
+    .process,
+    .result,
+    .demo-card,
+    .stat-card,
+    .faq-item {
       border: 1px solid var(--line);
       background: var(--panel);
       border-radius: var(--radius);
     }
-    .stat-card { padding: 22px; }
+    .hero-card {
+      padding: 20px;
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.05);
+    }
+    .grid { display: grid; gap: 16px; }
+    .card,
+    .service,
+    .usecase,
+    .process,
+    .result,
+    .demo-card,
+    .stat-card { padding: 24px; }
     .stat-big { font-size: 44px; font-weight: 700; letter-spacing: -0.04em; margin-top: 12px; }
     .stat-label { color: var(--soft); font-size: 14px; }
     .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -156,19 +166,29 @@
       border-bottom: 1px solid var(--line);
       background: rgba(255,255,255,0.02);
     }
-    .problem-grid, .services-grid, .usecase-grid, .process-grid, .why-grid, .faq-grid, .results-grid {
+    .problem-grid,
+    .services-grid,
+    .usecase-grid,
+    .process-grid,
+    .why-grid,
+    .faq-grid,
+    .results-grid,
+    .benefits-grid {
       display: grid;
       gap: 18px;
     }
-    .problem-grid { grid-template-columns: repeat(3, 1fr); }
-    .services-grid, .usecase-grid { grid-template-columns: repeat(3, 1fr); margin-top: 34px; }
+    .problem-grid { grid-template-columns: repeat(3, 1fr); margin-top: 34px; }
+    .services-grid,
+    .usecase-grid,
+    .benefits-grid { grid-template-columns: repeat(3, 1fr); margin-top: 34px; }
     .process-grid { grid-template-columns: repeat(4, 1fr); margin-top: 34px; }
     .why-grid { grid-template-columns: 0.9fr 1.1fr; gap: 24px; }
     .faq-grid { margin-top: 34px; }
     .results-grid { grid-template-columns: repeat(2, 1fr); margin-top: 22px; }
 
-    .card, .service, .usecase, .process, .result { padding: 24px; }
-    .service-title, .usecase-title, .process-title { font-size: 22px; margin: 0 0 12px; letter-spacing: -0.03em; }
+    .service-title,
+    .usecase-title,
+    .process-title { font-size: 22px; margin: 0 0 12px; letter-spacing: -0.03em; }
     .muted { color: var(--muted); }
     .soft { color: var(--soft); }
     .accent { color: #d6ceff; }
@@ -194,6 +214,40 @@
       border-color: rgba(155,140,255,0.2);
     }
     .result-value { font-size: 34px; font-weight: 700; letter-spacing: -0.04em; margin-top: 8px; }
+
+    .chat {
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      margin-top: 0;
+    }
+    .bubble {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px 18px;
+      line-height: 1.65;
+    }
+    .bubble-user { background: rgba(255,255,255,0.04); }
+    .bubble-agent {
+      background: linear-gradient(135deg, rgba(155,140,255,0.14), rgba(104,199,255,0.08));
+      border-color: rgba(155,140,255,0.18);
+    }
+    .bubble-label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 8px;
+    }
+    .demo-foot {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
 
     .faq-item { padding: 0; overflow: hidden; }
     .faq-item summary {
@@ -229,7 +283,8 @@
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .field.full { grid-column: 1 / -1; }
     .field label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
-    .field input, .field textarea {
+    .field input,
+    .field textarea {
       width: 100%;
       border: 1px solid var(--line);
       background: #111119;
@@ -241,22 +296,33 @@
     }
     .field textarea { min-height: 140px; resize: vertical; }
     .form-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; }
-
     .footer { padding: 28px 0 48px; color: var(--soft); font-size: 14px; }
 
     @media (max-width: 1100px) {
-      .hero, .calc-wrap, .contact-grid, .why-grid { grid-template-columns: 1fr; }
+      .hero,
+      .calc-wrap,
+      .contact-grid,
+      .why-grid { grid-template-columns: 1fr; }
       .problem-grid { grid-template-columns: 1fr; }
-      .services-grid, .usecase-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid,
+      .usecase-grid,
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
       .process-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 760px) {
       .nav-links { display: none; }
       .hero { padding-top: 56px; }
-      .services-grid, .usecase-grid, .process-grid, .split-2, .results-grid, .form-grid { grid-template-columns: 1fr; }
+      .services-grid,
+      .usecase-grid,
+      .process-grid,
+      .split-2,
+      .results-grid,
+      .form-grid,
+      .benefits-grid { grid-template-columns: 1fr; }
       .section { padding: 72px 0; }
-      .btns, .form-actions { flex-direction: column; }
+      .btns,
+      .form-actions { flex-direction: column; }
       .btn { width: 100%; }
     }
   </style>
@@ -282,61 +348,65 @@
     <section class="container hero">
       <div>
         <div class="pill"><span class="dot"></span> Agence spécialisée en agents IA sur mesure</div>
-        <h1 class="h1">Des agents IA conçus pour faire gagner du temps à votre entreprise.</h1>
-        <p class="lead">Novaria Studio conçoit des agents IA premium pour automatiser les tâches répétitives, améliorer la réactivité et fluidifier les opérations des entreprises ambitieuses.</p>
+        <h1 class="h1">Automatisez les demandes clients, la qualification et le suivi grâce à des agents IA sur mesure.</h1>
+        <p class="lead">Nous concevons des agents IA pour les entreprises qui reçoivent beaucoup de demandes clients. L’agent répond aux premiers messages, qualifie les demandes et prépare les informations avant qu’un membre de votre équipe intervienne.</p>
         <div class="btns">
           <a class="btn btn-primary" href="https://calendly.com/novariastudio" target="_blank" rel="noreferrer">Étudier mon projet</a>
           <a class="btn btn-secondary" href="#calculator">Voir mes économies potentielles</a>
         </div>
-        <div class="small-note">Des solutions concrètes, sur mesure, pensées pour vos opérations réelles.</div>
+        <div class="small-note">Particulièrement utile pour les entreprises de transport, les entreprises de services et les équipes qui reçoivent beaucoup de demandes clients.</div>
       </div>
       <div class="hero-card">
         <div class="grid">
           <div class="stat-card">
-            <div class="stat-label">Impact opérationnel</div>
-            <div class="stat-big">+22h</div>
-            <div class="soft">gagnées par mois sur des tâches répétitives</div>
+            <div class="stat-label">Résultat</div>
+            <div class="stat-big">Plus de temps utile</div>
+            <div class="soft">des demandes mieux traitées, un suivi plus propre et moins de charge inutile pour l’équipe</div>
           </div>
           <div class="split-2">
             <div class="card">
-              <div class="stat-label">Réactivité</div>
-              <div class="service-title" style="margin-top:10px; font-size:28px;">Réponses plus rapides</div>
-              <div class="soft">moins d’attente, plus de fluidité</div>
+              <div class="stat-label">Demandes entrantes</div>
+              <div class="service-title" style="margin-top:10px; font-size:28px;">Réponse plus rapide</div>
+              <div class="soft">les premières demandes sont prises en charge sans mobiliser inutilement l’équipe</div>
             </div>
             <div class="card">
-              <div class="stat-label">Suivi</div>
+              <div class="stat-label">Suivi commercial</div>
               <div class="service-title" style="margin-top:10px; font-size:28px;">Moins d’opportunités perdues</div>
-              <div class="soft">qualification et relance mieux structurées</div>
+              <div class="soft">qualification, relance et transmission plus structurées</div>
             </div>
           </div>
           <div class="gradient-card">
-            <div class="stat-label">Positionnement</div>
-            <div class="service-title" style="font-size:30px; margin-top:12px;">L’IA devient utile quand elle travaille vraiment pour vous.</div>
+            <div class="stat-label">Ce que vous achetez vraiment</div>
+            <div class="service-title" style="font-size:30px; margin-top:12px;">Des réponses plus rapides, des demandes mieux qualifiées et une équipe moins saturée.</div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="problem-band section">
-      <div class="container problem-grid">
-        <div class="card"><div class="eyebrow">Problème</div><div style="font-size:24px; line-height:1.4;">Tâches répétitives qui ralentissent l’exécution</div></div>
-        <div class="card"><div class="eyebrow">Problème</div><div style="font-size:24px; line-height:1.4;">Demandes entrantes mal suivies ou traitées trop tard</div></div>
-        <div class="card"><div class="eyebrow">Problème</div><div style="font-size:24px; line-height:1.4;">Processus manuels qui coûtent cher à grande échelle</div></div>
+      <div class="container">
+        <div class="eyebrow">Pour qui</div>
+        <h2 class="h2">Une solution pensée pour les entreprises qui gèrent du volume, du suivi et trop d’exécution manuelle.</h2>
+        <div class="problem-grid">
+          <div class="card"><div class="eyebrow">Transport</div><div style="font-size:24px; line-height:1.4;">Demandes entrantes, suivi client, relances et charge opérationnelle diffuse.</div></div>
+          <div class="card"><div class="eyebrow">Services</div><div style="font-size:24px; line-height:1.4;">Réponse client, qualification, prise de rendez-vous et suivi commercial.</div></div>
+          <div class="card"><div class="eyebrow">Administratif</div><div style="font-size:24px; line-height:1.4;">Tâches répétitives, circulation d’information et routines qui freinent l’équipe.</div></div>
+        </div>
       </div>
     </section>
 
     <section id="services" class="section">
       <div class="container">
-        <div class="eyebrow">Services</div>
-        <h2 class="h2">Une approche sur mesure, pensée pour vos vrais points de friction.</h2>
-        <p class="lead">Nous concevons des agents IA utiles, élégants et directement reliés à vos priorités opérationnelles.</p>
+        <div class="eyebrow">4 leviers d’automatisation</div>
+        <h2 class="h2">Des catégories claires pour traiter les problèmes qui coûtent vraiment du temps.</h2>
+        <p class="lead">Nous ne vendons pas “de l’IA” en général. Nous construisons des agents IA pour des situations précises : demandes entrantes, suivi commercial, rendez-vous et tâches administratives.</p>
         <div class="services-grid">
-          <div class="service"><h3 class="service-title">Audit des processus</h3><p class="muted">Nous identifions les tâches répétitives, les points de friction et les opportunités d’automatisation les plus rentables.</p><p class="accent">Une feuille de route claire et actionnable.</p></div>
-          <div class="service"><h3 class="service-title">Agents IA sur mesure</h3><p class="muted">Des agents conçus pour votre activité, vos outils et vos contraintes réelles.</p><p class="accent">Une automatisation utile, précise et alignée business.</p></div>
-          <div class="service"><h3 class="service-title">Qualification de leads</h3><p class="muted">Réponse, tri et qualification automatique des prospects entrants.</p><p class="accent">Moins d’opportunités perdues, plus de suivi.</p></div>
-          <div class="service"><h3 class="service-title">Support client</h3><p class="muted">Des réponses plus rapides, plus cohérentes et disponibles en continu.</p><p class="accent">Une meilleure expérience client à grande échelle.</p></div>
-          <div class="service"><h3 class="service-title">Prise de rendez-vous</h3><p class="muted">Des agents qui proposent, filtrent et organisent les créneaux pertinents.</p><p class="accent">Un agenda plus fluide et moins d’allers-retours.</p></div>
-          <div class="service"><h3 class="service-title">Intégrations & workflows</h3><p class="muted">Connexion à vos outils pour automatiser les actions utiles au bon moment.</p><p class="accent">Des opérations plus rapides et plus fiables.</p></div>
+          <div class="service"><h3 class="service-title">Gestion des demandes entrantes</h3><p class="muted">Des agents capables de répondre, orienter, filtrer et structurer les premières demandes sans saturer votre équipe.</p><p class="accent">Moins d’attente, moins de demandes mal traitées.</p></div>
+          <div class="service"><h3 class="service-title">Qualification et suivi commercial</h3><p class="muted">Des agents capables de qualifier un besoin, poser les bonnes questions et faire avancer la relation au bon rythme.</p><p class="accent">Plus de suivi, moins d’opportunités perdues.</p></div>
+          <div class="service"><h3 class="service-title">Prise de rendez-vous</h3><p class="muted">L’agent prépare l’échange, filtre le besoin et propose un rendez-vous seulement quand le contexte est suffisamment clair.</p><p class="accent">Moins d’allers-retours, plus de créneaux utiles.</p></div>
+          <div class="service"><h3 class="service-title">Automatisation administrative</h3><p class="muted">Des agents conçus pour alléger les routines, les suivis simples et les tâches qui consomment du temps sans créer de valeur.</p><p class="accent">Une exécution plus fluide au quotidien.</p></div>
+          <div class="service"><h3 class="service-title">Adapté à vos outils</h3><p class="muted">Chaque agent est pensé selon votre activité, vos contraintes réelles et les outils déjà utilisés par votre équipe.</p><p class="accent">Du sur mesure, pas une démo générique.</p></div>
+          <div class="service"><h3 class="service-title">Cadrage stratégique</h3><p class="muted">Nous identifions ce qui mérite d’être automatisé, ce qui doit rester humain, et comment créer un vrai gain opérationnel.</p><p class="accent">Une mise en œuvre claire, rentable et lisible.</p></div>
         </div>
       </div>
     </section>
@@ -354,8 +424,8 @@
       <div class="container calc-wrap">
         <div>
           <div class="eyebrow">Calculateur</div>
-          <h2 class="h2">Ce qui paraît mineur chaque jour devient souvent majeur sur une année.</h2>
-          <p class="lead">Utilise les curseurs pour estimer le coût des tâches répétitives dans ton activité et visualiser ce qu’un agent IA peut réellement absorber.</p>
+          <h2 class="h2">Estimez ce que vos tâches répétitives vous coûtent réellement.</h2>
+          <p class="lead">Quelques minutes perdues chaque jour peuvent représenter des dizaines d’heures sur un mois. Ce calculateur vous aide à visualiser l’impact réel d’une charge opérationnelle trop manuelle.</p>
           <p class="small-note">Quelques minutes répétées chaque jour finissent par coûter très cher sur une année.</p>
         </div>
         <div class="calc-panel">
@@ -373,10 +443,51 @@
           </div>
           <div class="results-grid">
             <div class="result"><div class="soft">Temps perdu par mois</div><div id="monthlyHours" class="result-value">110 h</div></div>
-            <div class="result"><div class="soft">Coût mensuel estimé</div><div id="monthlyCost" class="result-value">4 950 €</div></div>
-            <div class="result"><div class="soft">Coût annuel estimé</div><div id="yearlyCost" class="result-value">59 400 €</div></div>
-            <div class="result highlight"><div class="soft">Économies potentielles</div><div id="savings" class="result-value">41 580 €</div></div>
+            <div class="result"><div class="soft">Coût mensuel estimé</div><div id="monthlyCost" class="result-value">4 950 €</div></div>
+            <div class="result"><div class="soft">Coût annuel estimé</div><div id="yearlyCost" class="result-value">59 400 €</div></div>
+            <div class="result highlight"><div class="soft">Économies potentielles</div><div id="savings" class="result-value">41 580 €</div></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case-study" class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="eyebrow">Exemple réel</div>
+        <h2 class="h2">Comment un agent IA peut transformer la gestion des demandes clients.</h2>
+        <p class="lead">Exemple inspiré d'une entreprise de services recevant de nombreuses demandes chaque jour.</p>
+
+        <div class="services-grid" style="margin-top:40px; align-items:start;">
+
+          <div class="card" style="padding:28px; border-radius:32px;">
+            <div class="service-title" style="font-size:26px; margin-bottom:14px;">Situation initiale</div>
+            <p class="muted">Une entreprise reçoit environ <strong>40 demandes clients par jour</strong> par email et formulaire.</p>
+            <div class="grid">
+              <div class="card">Chaque message est traité manuellement par l'équipe.</div>
+              <div class="card">Certaines demandes sont incomplètes ou mal qualifiées.</div>
+              <div class="card">L'équipe passe plus de <strong>2 à 3 heures par jour</strong> à répondre aux mêmes questions.</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:28px; border-radius:32px; background:linear-gradient(135deg, rgba(155,140,255,0.14), rgba(104,199,255,0.08)); border-color:rgba(155,140,255,0.18);">
+            <div class="service-title" style="font-size:26px; margin-bottom:14px;">Après installation d'un agent IA</div>
+            <p class="muted">L'agent répond automatiquement aux premiers messages et prépare les informations utiles.</p>
+            <div class="grid">
+              <div class="card">Les questions fréquentes sont traitées immédiatement.</div>
+              <div class="card">Les demandes sont automatiquement qualifiées.</div>
+              <div class="card">L'équipe reçoit des demandes déjà structurées.</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:28px; border-radius:32px;">
+            <div class="service-title" style="font-size:26px; margin-bottom:14px;">Résultat</div>
+            <div class="results-grid" style="grid-template-columns:1fr; margin-top:0;">
+              <div class="result highlight"><div class="soft">Temps économisé</div><div class="result-value">≈ 40 heures / mois</div></div>
+              <div class="result"><div class="soft">Demandes mieux traitées</div><div class="result-value">Qualification automatique</div></div>
+              <div class="result"><div class="soft">Charge équipe</div><div class="result-value">Moins d'interruptions</div></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -396,19 +507,147 @@
       </div>
     </section>
 
+    <section id="demonstrations" class="section" style="background:#ffffff; color:#000;">
+  <div class="container">
+
+    <div class="eyebrow" style="color:#666;">Exemples concrets</div>
+
+    <h2 class="h2" style="color:#000; max-width:20ch;">
+    Exemple de conversations gérées par un agent IA
+    </h2>
+
+    <p class="lead" style="color:#555;">
+    Exemples concrets de conversations automatisées dans les entreprises de transport, les entreprises de services et les équipes opérationnelles.
+    </p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; margin-top:60px; align-items:start;">
+
+      <!-- bloc 1 -->
+      <div>
+        <div style="text-align:center; font-weight:700; margin-bottom:8px; font-size:18px; letter-spacing:-0.02em;">Entreprise de transport / demande de devis</div>
+        <div style="text-align:center; font-size:13px; color:#666; margin-bottom:18px;">Le client demande un devis, l’agent structure la demande.</div>
+
+        <div style="background:linear-gradient(180deg,#f7f7f7,#ececec); padding:14px; border-radius:28px; margin-bottom:16px; box-shadow:0 16px 40px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06);">
+          <div style="background:white; padding:14px 16px; border-radius:18px 18px 18px 8px; margin-bottom:10px; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+          Bonjour, nous devons organiser un transport entre Lyon et Marseille pour la semaine prochaine. Pouvez-vous nous faire un devis ?
+          </div>
+
+          <div style="background:#dcf8c6; padding:14px 16px; border-radius:18px 18px 8px 18px; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+          Bonjour 👋<br><br>
+          Je peux vous aider à préparer la demande.<br><br>
+          Pouvez-vous me préciser :<br>
+          • le lieu de départ<br>
+          • la destination<br>
+          • la date souhaitée<br>
+          
+          </div>
+        </div>
+
+        <p style="font-size:14px; color:#444; text-align:center; line-height:1.7; max-width:36ch; margin:0 auto;">
+        L’agent récupère automatiquement les informations nécessaires pour préparer un devis et transmettre une demande déjà structurée à l’équipe.
+        </p>
+      </div>
+
+      <!-- bloc 2 -->
+      <div>
+        <div style="text-align:center; font-weight:700; margin-bottom:8px; font-size:18px; letter-spacing:-0.02em;">Entreprise de services / prise de rendez-vous</div>
+        <div style="text-align:center; font-size:13px; color:#666; margin-bottom:18px;">L’agent filtre avant de proposer un échange utile.</div>
+
+        <div style="background:linear-gradient(180deg,#f7f7f7,#ececec); padding:14px; border-radius:28px; margin-bottom:16px; box-shadow:0 16px 40px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06);">
+          <div style="background:white; padding:14px 16px; border-radius:18px 18px 18px 8px; margin-bottom:10px; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+          Bonjour, nous cherchons à discuter d'une prestation mais je voudrais savoir si cela correspond à notre besoin avant de prendre rendez‑vous.
+          </div>
+
+          <div style="background:#dcf8c6; padding:14px 16px; border-radius:18px 18px 8px 18px; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+          Bien sûr 👍<br><br>
+          Je peux organiser un rendez-vous avec l'équipe.<br><br>
+          Pouvez-vous me préciser votre besoin principal afin que je puisse vous orienter ou organiser un rendez‑vous adapté ?
+          </div>
+        </div>
+
+        <p style="font-size:14px; color:#444; text-align:center; line-height:1.7; max-width:36ch; margin:0 auto;">
+        L’agent identifie le besoin du prospect et propose un rendez-vous uniquement lorsque la demande est pertinente.
+        </p>
+      </div>
+
+      <!-- bloc 3 -->
+      <div>
+        <div style="text-align:center; font-weight:700; margin-bottom:8px; font-size:18px; letter-spacing:-0.02em;">Équipe opérationnelle / question client</div>
+        <div style="text-align:center; font-size:13px; color:#666; margin-bottom:18px;">L’agent rassure et prépare une réponse exploitable.</div>
+
+        <div style="background:linear-gradient(180deg,#f7f7f7,#ececec); padding:14px; border-radius:28px; margin-bottom:16px; box-shadow:0 16px 40px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06);">
+          <div style="background:white; padding:14px 16px; border-radius:18px 18px 18px 8px; margin-bottom:10px; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+          Nous utilisons déjà un CRM pour gérer nos clients, est‑ce que votre solution peut s'y connecter ?
+          </div>
+
+          <div style="background:#dcf8c6; padding:14px 16px; border-radius:18px 18px 8px 18px; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+          Oui dans la majorité des cas.<br><br>Nos agents peuvent généralement s'intégrer aux outils utilisés par les équipes opérationnelles.
+          Pouvez-vous me dire quel CRM vous utilisez pour que je vérifie la compatibilité ?
+          </div>
+        </div>
+
+        <p style="font-size:14px; color:#444; text-align:center; line-height:1.7; max-width:36ch; margin:0 auto;">
+        L’agent répond aux questions fréquentes et prépare une réponse claire avant l’intervention de l’équipe.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="results-grid" style="margin-top:60px;">
+
+      <div class="card" style="background:#f7f7f7; color:#000;">
+        <h3>Réponse instantanée</h3>
+        <p>Les premiers messages clients sont traités immédiatement sans mobiliser l'équipe.</p>
+      </div>
+
+      <div class="card" style="background:#f7f7f7; color:#000;">
+        <h3>Demandes qualifiées</h3>
+        <p>L’agent pose les bonnes questions, récupère les informations clés et transmet des demandes déjà structurées.</p>
+      </div>
+
+      <div class="card" style="background:#f7f7f7; color:#000;">
+        <h3>Moins de temps perdu</h3>
+        <p>Votre équipe se concentre sur les vraies demandes plutôt que sur les messages répétitifs.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+    <section id="lead-magnet" class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="cta-box" style="text-align:left;">
+          <div class="eyebrow">Guide gratuit</div>
+          <h2 class="h2" style="max-width:18ch;">Le guide simple pour automatiser les messages clients avec un agent IA</h2>
+          <p class="lead" style="max-width:820px; margin-left:0;">Un guide simple pour les entreprises qui veulent répondre plus vite, mieux qualifier les demandes et gagner plusieurs heures par semaine sur des échanges répétitifs.</p>
+          <div class="grid" style="margin-top:28px; grid-template-columns:1fr 1fr; gap:14px; max-width:900px;">
+            <div class="card">Les tâches qu’un agent IA peut automatiser immédiatement</div>
+            <div class="card">Comment éviter de perdre du temps sur les demandes peu utiles</div>
+            <div class="card">Comment mieux qualifier avant qu’un humain intervienne</div>
+            <div class="card">Un exemple concret de conversation automatisée</div>
+          </div>
+          <div class="btns" style="margin-top:28px;">
+            <a class="btn btn-primary" href="#contact">Télécharger le guide gratuit</a>
+          </div>
+          <div class="small-note">Aucun spam. Juste des idées concrètes pour automatiser intelligemment les échanges clients.</div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" style="padding-top:0;">
       <div class="container">
         <div class="card" style="padding:32px; border-radius:34px;">
           <div class="why-grid">
             <div>
               <div class="eyebrow">Pourquoi Novaria Studio</div>
-              <h2 class="h2">Plus qu’une automatisation : une mise en œuvre claire, sobre et stratégique.</h2>
+              <h2 class="h2">Une approche plus utile que spectaculaire.</h2>
             </div>
             <div class="grid">
-              <div class="card">Des solutions sur mesure, pas des automatisations génériques.</div>
-              <div class="card">Une vraie lecture business avant toute décision technique.</div>
-              <div class="card">Une expérience premium, claire et compréhensible.</div>
-              <div class="card">Des cas d’usage concrets, pensés pour produire un impact réel.</div>
+              <div class="card">Sur mesure, pas générique.</div>
+              <div class="card">Pensé pour les opérations, pas pour faire joli.</div>
+              <div class="card">Lisible pour les équipes, pas réservé aux profils techniques.</div>
+              <div class="card">Orienté résultat concret, pas promesse floue.</div>
             </div>
           </div>
         </div>
@@ -416,7 +655,7 @@
     </section>
 
     <section id="faq" class="section">
-      <div class="container" style="max-width: 980px;">
+      <div class="container" style="max-width:980px;">
         <div class="eyebrow" style="text-align:center;">FAQ</div>
         <h2 class="h2" style="text-align:center; max-width:none;">Les questions les plus fréquentes.</h2>
         <div class="faq-grid">
@@ -436,8 +675,8 @@
       <div class="container">
         <div class="cta-box">
           <div class="eyebrow">Appel à l’action</div>
-          <h2 class="h2" style="max-width: 16ch; margin: 0 auto; text-align:center;">Découvrez ce qu’un agent IA peut réellement automatiser dans votre activité.</h2>
-          <p class="lead" style="margin-left:auto; margin-right:auto; text-align:center; max-width: 760px;">Un échange simple, stratégique et concret pour identifier où se trouve le vrai gain de temps.</p>
+          <h2 class="h2" style="max-width:16ch; margin:0 auto; text-align:center;">Voyons ce qui peut réellement être automatisé dans votre activité.</h2>
+          <p class="lead" style="margin-left:auto; margin-right:auto; text-align:center; max-width:760px;">Un échange simple pour identifier les tâches qui vous coûtent du temps, les points de friction et les cas d’usage les plus pertinents pour votre organisation.</p>
           <div class="btns" style="justify-content:center;">
             <a class="btn btn-primary" href="https://calendly.com/novariastudio" target="_blank" rel="noreferrer">Demander un échange</a>
           </div>
@@ -449,8 +688,8 @@
       <div class="container contact-grid">
         <div>
           <div class="eyebrow">Contact</div>
-          <h2 class="h2">Parlons de ce qui peut être simplifié, accéléré ou automatisé.</h2>
-          <p class="lead">Décris ton activité, tes points de friction et ce que tu veux améliorer. Nous revenons vers toi avec une lecture claire et utile.</p>
+          <h2 class="h2">Parlons de vos demandes, de votre suivi et de ce qui vous ralentit vraiment.</h2>
+          <p class="lead">Décrivez votre activité, les tâches qui prennent trop de temps et les points de friction actuels. Nous revenons vers vous avec une lecture claire, simple et utile.</p>
         </div>
         <form class="form" action="https://formspree.io/f/mnjoyrew" method="POST">
           <div class="form-grid">
@@ -483,48 +722,52 @@
   <footer class="container footer">© Novaria Studio — Agents IA sur mesure pour entreprises.</footer>
 
   <script>
-    const tasks = document.getElementById('tasks');
-    const minutes = document.getElementById('minutes');
-    const hourlyRate = document.getElementById('hourlyRate');
+    document.addEventListener('DOMContentLoaded', function () {
+      var tasks = document.getElementById('tasks');
+      var minutes = document.getElementById('minutes');
+      var hourlyRate = document.getElementById('hourlyRate');
+      var tasksValue = document.getElementById('tasksValue');
+      var minutesValue = document.getElementById('minutesValue');
+      var hourlyValue = document.getElementById('hourlyValue');
+      var monthlyHoursEl = document.getElementById('monthlyHours');
+      var monthlyCostEl = document.getElementById('monthlyCost');
+      var yearlyCostEl = document.getElementById('yearlyCost');
+      var savingsEl = document.getElementById('savings');
 
-    const tasksValue = document.getElementById('tasksValue');
-    const minutesValue = document.getElementById('minutesValue');
-    const hourlyValue = document.getElementById('hourlyValue');
+      if (!tasks || !minutes || !hourlyRate || !tasksValue || !minutesValue || !hourlyValue || !monthlyHoursEl || !monthlyCostEl || !yearlyCostEl || !savingsEl) {
+        return;
+      }
 
-    const monthlyHoursEl = document.getElementById('monthlyHours');
-    const monthlyCostEl = document.getElementById('monthlyCost');
-    const yearlyCostEl = document.getElementById('yearlyCost');
-    const savingsEl = document.getElementById('savings');
+      var euro = new Intl.NumberFormat('fr-FR', {
+        style: 'currency',
+        currency: 'EUR',
+        maximumFractionDigits: 0
+      });
 
-    const euro = new Intl.NumberFormat('fr-FR', {
-      style: 'currency',
-      currency: 'EUR',
-      maximumFractionDigits: 0
+      function updateCalculator() {
+        var t = Number(tasks.value);
+        var m = Number(minutes.value);
+        var h = Number(hourlyRate.value);
+        var dailyMinutes = t * m;
+        var monthlyHours = (dailyMinutes * 22) / 60;
+        var monthlyCost = monthlyHours * h;
+        var yearlyCost = monthlyCost * 12;
+        var savings = yearlyCost * 0.7;
+
+        tasksValue.textContent = String(t);
+        minutesValue.textContent = String(m) + ' min';
+        hourlyValue.textContent = String(h) + ' €/h';
+        monthlyHoursEl.textContent = monthlyHours.toFixed(1) + ' h';
+        monthlyCostEl.textContent = euro.format(monthlyCost);
+        yearlyCostEl.textContent = euro.format(yearlyCost);
+        savingsEl.textContent = euro.format(savings);
+      }
+
+      tasks.addEventListener('input', updateCalculator);
+      minutes.addEventListener('input', updateCalculator);
+      hourlyRate.addEventListener('input', updateCalculator);
+      updateCalculator();
     });
-
-    function updateCalculator() {
-      const t = Number(tasks.value);
-      const m = Number(minutes.value);
-      const h = Number(hourlyRate.value);
-
-      const dailyMinutes = t * m;
-      const monthlyHours = (dailyMinutes * 22) / 60;
-      const monthlyCost = monthlyHours * h;
-      const yearlyCost = monthlyCost * 12;
-      const savings = yearlyCost * 0.7;
-
-      tasksValue.textContent = t;
-      minutesValue.textContent = `${m} min`;
-      hourlyValue.textContent = `${h} €/h`;
-
-      monthlyHoursEl.textContent = `${monthlyHours.toFixed(1)} h`;
-      monthlyCostEl.textContent = euro.format(monthlyCost);
-      yearlyCostEl.textContent = euro.format(yearlyCost);
-      savingsEl.textContent = euro.format(savings);
-    }
-
-    [tasks, minutes, hourlyRate].forEach(input => input.addEventListener('input', updateCalculator));
-    updateCalculator();
   </script>
 </body>
 </html>
